@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Acommerce_Address::address" title="Address" translate="title" module="Acommerce_Address" sortOrder="64" parent="Magento_Customer::customer" resource="Acommerce_Address::address"/>
+        <add id="Acommerce_Address::region" title="Manage Regions" module="Acommerce_Address" sortOrder="65" parent="Acommerce_Address::address" action="acommerce_address/region" resource="Acommerce_Address::region"/>
+        <add id="Acommerce_Address::city" title="Manage Cities" module="Acommerce_Address" sortOrder="66" parent="Acommerce_Address::address" action="acommerce_address/city" resource="Acommerce_Address::city"/>
+        <add id="Acommerce_Address::township" title="Manage Township" module="Acommerce_Address" sortOrder="67" parent="Acommerce_Address::address" action="acommerce_address/township" resource="Acommerce_Address::township"/>
+        <add id="Acommerce_Address::import_address" title="Import Address" module="Acommerce_Address" sortOrder="70" parent="Acommerce_Address::address" action="acommerce_address/importaddress" resource="Acommerce_Address::import_address"/>
+    </menu>
+</config>

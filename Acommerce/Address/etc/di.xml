@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="region_listing_data_source" xsi:type="string">Acommerce\Address\Model\ResourceModel\Region\Grid\Collection</item>
+                <item name="city_listing_data_source" xsi:type="string">Acommerce\Address\Model\ResourceModel\City\Grid\Collection</item>
+                <item name="township_listing_data_source" xsi:type="string">Acommerce\Address\Model\ResourceModel\Township\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <virtualType name="AcommerceRegionGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AcommerceAddressRegionGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Acommerce\Address\Model\ResourceModel\Region\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AcommerceRegionGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Acommerce\Address\Model\ResourceModel\Region\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
+            <argument name="eventPrefix" xsi:type="string">directory_country_region_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">region_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Acommerce\Address\Model\ResourceModel\Region</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="AcommerceCityGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AcommerceAddressCityGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Acommerce\Address\Model\ResourceModel\City\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AcommerceCityGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Acommerce\Address\Model\ResourceModel\City\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_region_city</argument>
+            <argument name="eventPrefix" xsi:type="string">directory_region_city_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">city_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Acommerce\Address\Model\ResourceModel\City</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="AcommerceTownshipGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AcommerceAddressTownshipGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Acommerce\Address\Model\ResourceModel\Township\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AcommerceTownshipGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Acommerce\Address\Model\ResourceModel\Township\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_city_township</argument>
+            <argument name="eventPrefix" xsi:type="string">directory_city_township_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">township_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Acommerce\Address\Model\ResourceModel\Township</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Model\BillingAddressManagement">
+        <plugin disabled="false" name="Acommerce_Address_Plugin_Magento_Quote_Model_BillingAddressManagement" sortOrder="10" type="Acommerce\Address\Plugin\Magento\Quote\Model\BillingAddressManagement"/>
+    </type>
+    <type name="Magento\Quote\Model\ShippingAddressManagement">
+        <plugin disabled="false" name="Acommerce_Address_Plugin_Magento_Quote_Model_ShippingAddressManagement" sortOrder="10" type="Acommerce\Address\Plugin\Magento\Quote\Model\ShippingAddressManagement"/>
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin disabled="false" name="Acommerce_Address_Plugin_Magento_Checkout_Model_PaymentInformationManagement" sortOrder="10" type="Acommerce\Address\Plugin\Magento\Checkout\Model\PaymentInformationManagement"/>
+    </type>
+    <type name="Magento\Checkout\Block\Checkout\DirectoryDataProcessor">
+        <plugin disabled="false" name="Acommerce_Address_Plugin_Magento_Checkout_Block_Checkout_DirectoryDataProcessor" sortOrder="10" type="Acommerce\Address\Plugin\Magento\Checkout\Block\Checkout\DirectoryDataProcessor"/>
+    </type>
+    <type name="Magento\Customer\Model\Address\Mapper">
+        <plugin disabled="false" name="Acommerce_Address_Plugin_Magento_Customer_Model_Address_Mapper" sortOrder="10" type="Acommerce\Address\Plugin\Magento\Customer\Model\Address\Mapper"/>
+    </type>
+    <type name="Magento\Framework\Api\DataObjectHelper">
+        <plugin name="Acommerce_Address_Plugin_Magento_Framework_Api_DataObjectHelper" type="Acommerce\Address\Plugin\Magento\Framework\Api\DataObjectHelper" sortOrder="10"/>
+    </type>
+    <type name="Magento\Framework\Reflection\DataObjectProcessor">
+        <plugin name="Acommerce_Address_Plugin_Magento_Framework_Reflection_DataObjectProcessor" type="Acommerce\Address\Plugin\Magento\Framework\Reflection\DataObjectProcessor" sortOrder="10"/>
+    </type>
+    <preference for="Magento\Customer\Model\Data\Address" type="Acommerce\Address\Model\Data\Address" />
+</config>
