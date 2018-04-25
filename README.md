@@ -5,7 +5,7 @@ The module is working with magento 2.1.x, if you are using magento 2.2.x, you ne
 app\code\Acommerce\Address\view\base\ui_component\customer_form_22.xml
 app\code\Acommerce\Address\view\frontend\templates\address\edit22.phtml
 
-After installed, pls go to admin > customer > import address and use my sample csv in data folder to import. The order to import is region > citi > township (if you dont use township, you can ignore it)
+After installed, pls go to admin > customer > import address and use my sample csv in data folder to import. The order to import is regions > cities > townships (if you dont use township, you can ignore it)
 
 Address template configuration (Stores > Configuration > Customer Configuration > Address template) - use this or change element sort order depend on your purpose
 
